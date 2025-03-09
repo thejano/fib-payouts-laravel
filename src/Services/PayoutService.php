@@ -18,8 +18,14 @@ class PayoutService
             : config('fib-payout.stage_url');
     }
 
-    public function createPayout(array $data)
+    public function createPayout(int $amount, string $targetAccountIban, string $description, string $currency)
     {
+        $data = [
+            'amount' => ['amount' => $amount, 'currency' => $currency],
+            'targetAccountIban' => $targetAccountIban,
+            'description' => $description
+        ];
+
         $response = Http::withToken($this->authService->getAccessToken())
             ->post("{$this->baseUrl}/protected/v1/payouts", $data);
 

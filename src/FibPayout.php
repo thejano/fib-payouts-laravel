@@ -33,13 +33,12 @@ class FibPayout
 
     public function createPayout(int $amount, string $targetAccountIban, string $description = '', string $currency = 'IQD')
     {
-        $data = [
-            'amount' => ['amount' => $amount, 'currency' => $currency],
-            'targetAccountIban' => $targetAccountIban,
-            'description' => $description
-        ];
-
-        return $this->payoutService->createPayout($data);
+        return $this->payoutService->createPayout(
+            $amount,
+            $targetAccountIban,
+            $description,
+            $currency
+        );
     }
 
 
