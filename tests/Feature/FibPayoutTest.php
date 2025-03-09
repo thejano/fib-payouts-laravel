@@ -33,11 +33,11 @@ beforeEach(function () {
 });
 
 test('it creates a payout successfully', function () {
-    $payout = FibPayout::createPayout([
-        'amount' => ['amount' => 1000, 'currency' => 'IQD'],
-        'targetAccountIban' => 'IQD123456789',
-        'description' => 'Payment for services'
-    ]);
+    $payout = FibPayout::createPayout(
+        amount: 1000,
+        targetAccountIban: 'IQD123456789',
+        description: 'Payment for services',
+    );
 
     expect($payout)->toHaveKey('payoutId', '12345-abcde-67890');
 });
