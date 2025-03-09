@@ -1,0 +1,48 @@
+<?php
+
+namespace TheJano\FibPayouts;
+
+use TheJano\FibPayouts\Services\AuthService;
+use TheJano\FibPayouts\Services\PayoutService;
+
+class FibPayout
+{
+    private static ?FibPayout $instance = null;
+
+    protected $authService;
+    protected $payoutService;
+
+    public function __construct()
+    {
+        $this->authService = app(AuthService::class);
+        $this->payoutService = app(PayoutService::class);
+    }
+
+    public static function make(): FibPayout
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    public function getToken()
+    {
+        return $this->authService->getAccessToken();
+    }
+
+    public function createPayout(array $data)
+    {
+        return $this->payoutService->createPayout($data);
+    }
+
+    public function authorizePayout(string $payoutId)
+    {
+        return $this->payoutService->authorizePayout($payoutId);
+    }
+
+    public function getPayoutDetails(string $payoutId)
+    {
+        return $this->payoutService->getPayoutDetails($payoutId);
+    }
+}
