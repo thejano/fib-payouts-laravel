@@ -32,7 +32,7 @@ composer require thejano/fib-payouts-laravel
 
 ### 2. Publish the Configuration File
 ```sh
-php artisan vendor:publish --provider="TheJano\FibPayouts\FibPayoutServiceProvider"
+php artisan vendor:publish --provider="TheJano\FibPayouts\Providers\FibPayoutsServiceProvider"
 
 ```
 This will create the config file `config/fib-payout.php`.
