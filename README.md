@@ -74,11 +74,11 @@ $token = FibPayout::getToken();
 This function initiates a payout transaction by providing the necessary details.
 
 ```php
-$payout = FibPayout::createPayout([
-    'amount' => ['amount' => 1000, 'currency' => 'IQD'],
-    'targetAccountIban' => 'IQ23FIQB004085190510001',
-    'description' => 'Payment for services'
-]);
+$payout = FibPayout::createPayout(
+    amount: 1000,
+    targetAccountIban: 'IQ23FIQB004085190510001', 
+    description: 'Payment for services'
+);
 ```
 #### **Response:**
 ```json

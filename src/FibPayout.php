@@ -31,10 +31,17 @@ class FibPayout
         return $this->authService->getAccessToken();
     }
 
-    public function createPayout(array $data)
+    public function createPayout(int $amount, string $targetAccountIban, string $description = '', string $currency = 'IQD')
     {
+        $data = [
+            'amount' => ['amount' => $amount, 'currency' => $currency],
+            'targetAccountIban' => $targetAccountIban,
+            'description' => $description
+        ];
+
         return $this->payoutService->createPayout($data);
     }
+
 
     public function authorizePayout(string $payoutId)
     {
